@@ -1,0 +1,27 @@
+# --- Yelp raw data (download separately from https://www.yelp.com/dataset) ---
+Yelp_data_set/
+*.tar
+yelp_academic_dataset_*.json
+
+# --- Generated DuckDB databases (rebuild with build_yelp_databases.py) ---
+yelp_dbs/
+*.duckdb
+*.duckdb.wal
+
+# --- Query extracts / derived data ---
+extracts/
+*.parquet
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+venv/
+env/
+
+# --- OS / editor cruft ---
+.DS_Store
+__MACOSX/
+Thumbs.db
+.vscode/
