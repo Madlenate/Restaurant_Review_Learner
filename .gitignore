@@ -12,6 +12,9 @@ yelp_dbs/
 extracts/
 *.parquet
 
+# --- Trained models / app artifacts (rebuild: notebook ALS cell + scripts.build_app_data) ---
+models/
+
 # --- Python ---
 __pycache__/
 *.py[cod]
