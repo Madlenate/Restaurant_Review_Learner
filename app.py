@@ -99,14 +99,17 @@ with right:
             "restriction or lowering the min-reviews threshold."
         )
     else:
-        for _, r in recs.iterrows():
+        st.map(
+            recs[["latitude", "longitude"]].dropna(),
+            size=60,
+            color="#e45756",
+        )
+        for rank, (_, r) in enumerate(recs.iterrows(), start=1):
             price = "$" * int(r["price"]) if pd.notna(r["price"]) else ""
             with st.container(border=True):
-                st.markdown(f"### {r['name']}  \n{r['city']}, {r['state']}  ·  {price}")
-                m1, m2 = st.columns(2)
-                m1.metric("Yelp avg", f"{r['avg_stars']:.1f}★", f"{r['review_count']} reviews",
+                st.markdown(f"### {rank}. {r['name']}  \n{r['city']}, {r['state']}  ·  {price}")
+                st.metric("Yelp avg", f"{r['avg_stars']:.1f}★", f"{r['review_count']} reviews",
                           delta_color="off")
-                m2.metric("Match score", f"{r['match_score']:.2f}")
                 st.caption(r["categories"])
                 st.write(f"**Why:** {rec.why(uid, r['business_id'])}")
                 if r["snippet"]:

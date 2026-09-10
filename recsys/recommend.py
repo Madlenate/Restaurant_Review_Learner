@@ -144,6 +144,8 @@ class Recommender:
                     "name": row["name"],
                     "city": row["city"],
                     "state": row["state"],
+                    "latitude": row["latitude"],
+                    "longitude": row["longitude"],
                     "price": row["price"],
                     "avg_stars": row["business_avg_stars"],
                     "review_count": int(row["business_review_count"]),
