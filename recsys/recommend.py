@@ -28,15 +28,15 @@ APP = MODELS / "app"
 
 @dataclass
 class Recommender:
-    U: np.ndarray                 # (n_users, f) user factors
-    V: np.ndarray                 # (n_items, f) item factors
-    user_ids: np.ndarray          # row index -> user_id
-    item_ids: np.ndarray          # row index -> business_id
-    business: pd.DataFrame         # catalog metadata, indexed by business_id
-    history_df: pd.DataFrame       # all warm-user reviews
-    user_home: pd.DataFrame        # user_id -> home_city / home_state
-    users: pd.DataFrame            # warm-user profiles, indexed by user_id
-    snippets: pd.DataFrame         # business_id -> representative review
+    U: np.ndarray # (n_users, f) user factors
+    V: np.ndarray # (n_items, f) item factors
+    user_ids: np.ndarray # row index -> user_id
+    item_ids: np.ndarray # row index -> business_id
+    business: pd.DataFrame # catalog metadata, indexed by business_id
+    history_df: pd.DataFrame # all warm-user reviews
+    user_home: pd.DataFrame # user_id -> home_city / home_state
+    users: pd.DataFrame  # warm-user profiles, indexed by user_id
+    snippets: pd.DataFrame # business_id -> representative review
 
     # ------------------------------------------------------------------ load
 
