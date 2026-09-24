@@ -108,7 +108,7 @@ with right:
         zoom = float(np.clip(11 - np.log2(max(lat_span, lon_span, 0.005) / 0.1), 4, 13))
         st.pydeck_chart(
             pdk.Deck(
-                map_provider=None,
+                map_style=None,
                 initial_view_state=pdk.ViewState(
                     latitude=map_df["latitude"].mean(),
                     longitude=map_df["longitude"].mean(),
