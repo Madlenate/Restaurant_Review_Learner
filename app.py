@@ -16,6 +16,7 @@ from __future__ import annotations
 
 import numpy as np
 import pandas as pd
+import pydeck as pdk
 import streamlit as st
 
 from recsys.recommend import Recommender
@@ -99,10 +100,33 @@ with right:
             "restriction or lowering the min-reviews threshold."
         )
     else:
-        st.map(
-            recs[["latitude", "longitude"]].dropna(),
-            size=60,
-            color="#e45756",
+        map_df = recs[["latitude", "longitude", "name"]].dropna(
+            subset=["latitude", "longitude"]
+        )
+        lat_span = map_df["latitude"].max() - map_df["latitude"].min()
+        lon_span = map_df["longitude"].max() - map_df["longitude"].min()
+        zoom = float(np.clip(11 - np.log2(max(lat_span, lon_span, 0.005) / 0.1), 4, 13))
+        st.pydeck_chart(
+            pdk.Deck(
+                map_style=None,
+                initial_view_state=pdk.ViewState(
+                    latitude=map_df["latitude"].mean(),
+                    longitude=map_df["longitude"].mean(),
+                    zoom=zoom,
+                ),
+                layers=[
+                    pdk.Layer(
+                        "ScatterplotLayer",
+                        data=map_df,
+                        get_position="[longitude, latitude]",
+                        get_fill_color=[228, 87, 86],
+                        radius_min_pixels=8,
+                        radius_max_pixels=20,
+                        pickable=True,
+                    )
+                ],
+                tooltip={"text": "{name}"},
+            )
         )
         for rank, (_, r) in enumerate(recs.iterrows(), start=1):
             price = "$" * int(r["price"]) if pd.notna(r["price"]) else ""
