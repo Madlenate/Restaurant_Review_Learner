@@ -8,12 +8,19 @@ yelp_dbs/
 *.duckdb
 *.duckdb.wal
 
-# --- Query extracts / derived data ---
-extracts/
-*.parquet
+# --- Query extracts / derived data (keep the small one the app reads at runtime) ---
+extracts/*
+!extracts/rec_business.parquet
 
-# --- Trained models / app artifacts (rebuild: notebook ALS cell + scripts.build_app_data) ---
-models/
+# --- Trained models / app artifacts (keep what app.py actually loads; rest is rebuildable) ---
+models/*
+!models/als.npz
+!models/app/
+models/app/*
+!models/app/history.parquet
+!models/app/snippets.parquet
+!models/app/user_home.parquet
+!models/app/users.parquet
 
 # --- Python ---
 __pycache__/
