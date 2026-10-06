@@ -4,6 +4,10 @@ A restaurant recommendation system built on the Yelp Open Dataset (6M+ reviews),
 combining **NLP sentiment/aspect analysis** with **collaborative filtering** to
 predict ratings and rank restaurant recommendations for users.
 
+
+Recommender Streamlit: https://restaurantreviewlearner-b4wfmpxhumnqp6mfnnpxah.streamlit.app/
+
+
 ---
 
 ## 🔍 TL;DR
